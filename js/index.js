@@ -86,3 +86,66 @@ let secondsPerMonth = secondsPerDay * 31;
 alert(`У 1 годині кількість секунд ${secondsPerHour}.`);
 alert(`У 1 добі кількість секунд ${secondsPerDay}.`);
 alert(`У 1 місяці кількість секунд ${secondsPerMonth}.`);
+
+// Завдання з *
+
+document.addEventListener("DOMContentLoaded", function () {  // виконання коду після завантаження HTML
+    let trainScheme = document.getElementById("trainScheme");
+    let getPlace = confirm(
+        "Бажаєте визначити розташування місця у потязі згідно білету та відобразити схему вагону?"
+    );
+    if (getPlace) {
+        // при підтвердженні завантажується зображення з схемою вагону
+        let img = document.createElement("img");
+        img.src = "img/train-seats.jpg";
+        trainScheme.appendChild(img);
+        trainScheme.classList.remove("train");
+        // створення змінної з номером місця, яке вводить користувач
+        let seatNumber = prompt(
+            "Введіть номер свого місця (число в діапазоні 1 - 54):"
+        );
+        // Перевірка, чи введено число
+        if (!isNaN(seatNumber)) {
+            let number = parseInt(seatNumber);
+            // Перевірка, чи число знаходиться у діапазоні від 1 до 54 (загальна кількість місць у вагоні)
+            if (number >= 1 && number <= 54) {
+                // Перевірка чи купе (діапазон 1 - 36)
+                if (number >= 1 && number <= 36) {
+                    let coupeSeats = 4; // 4 це кількість місць у купе
+                    // номер купе це округлення до більшого цілого при ділені
+                    let coupeNumber = Math.ceil(seatNumber / coupeSeats);
+                    //   Парне число - це верхнє місце
+                    if (number % 2 === 0) {
+                        alert(
+                            `Ваше місце ${number} - це купе номер ${coupeNumber}, верхнє місце.`
+                        );
+                        // Непарне число - це нижнє місце
+                    } else {
+                        alert(
+                            `Ваше місце ${number} - це купе номер ${coupeNumber}, нижнє місце.`
+                        );
+                    }
+                }
+                // працюємо з діапазоном бокових місць (37-54)
+                else {
+                    //   Парне число - це верхнє місце
+                    if (number % 2 === 0) {
+                        alert(`Ваше місце ${number} - це бокове верхнє місце.`);
+                        // Непарне число - це нижнє місце
+                    } else {
+                        alert(`Ваше місце ${number} - це бокове нижнє місце.`);
+                    }
+                }
+                // якщо введене число не в діапазоні місць
+            } else {
+                alert(
+                    `Номер Вашого місця ${number} не потрапляє у діапазон номерів плацкартного вагону (1-54).`
+                );
+            }
+            // якщо введене НЕ число
+        } else {
+            alert("Введені дані не є числом.");
+        }
+    } else {
+    }
+});
