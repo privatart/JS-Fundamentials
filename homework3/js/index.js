@@ -41,16 +41,17 @@ function randArray(k) {
 }
 randArray(6);
 
-// Завдання 5
+/// Завдання 5
 function arraysOfTypes(arr) {
   arrayString = [];
   arrayNumber = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] == "string") {
-      arrayString.push(arr[i]);
+  arrayFlat = arr.flat(); // ств. новий масив з всіма елементами вхідного, в т.ч. елементами підмасива
+  for (let i = 0; i < arrayFlat.length; i++) {
+    if (typeof arrayFlat[i] == "string") {
+      arrayString.push(arrayFlat[i]);
     }
-    if (typeof arr[i] == "number") {
-      arrayNumber.push(arr[i]);
+    if (typeof arrayFlat[i] == "number") {
+      arrayNumber.push(arrayFlat[i]);
     }
   }
   console.log(arrayString);
@@ -77,3 +78,31 @@ arraysOfTypes([
 // продубльоване у домашці №2
 
 // Завдання 8
+
+const timeNow = new Date();
+const hourNow = timeNow.getHours();
+
+// Варіант 1
+if (hourNow >= 5 && hourNow < 11) {
+  alert("Доброго ранку");
+} else if (hourNow >= 11 && hourNow < 17) {
+  alert("Доброго дня");
+} else if (hourNow >= 17 && hourNow < 23) {
+  alert("Доброго вечора");
+} else {
+  alert("Доброї ночі");
+}
+
+//Варіант 2
+if (hourNow >= 5 && hourNow < 11) {
+  alert("Доброго ранку");
+}
+if (hourNow >= 11 && hourNow < 17) {
+  alert("Доброго дня");
+}
+if (hourNow >= 17 && hourNow < 23) {
+  alert("Доброго вечора");
+}
+if (hourNow >= 23 && hourNow < 5) {
+  alert("Доброї ночі");
+}
