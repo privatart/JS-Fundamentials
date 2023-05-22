@@ -33,13 +33,44 @@ answer =
     : alert("You are too young, sorry");
 
 // Завдання 4
-// Задано масив чисел, знайти число яке найбільш часто входить в масив,
-// занести це число в новий масив і видалити всі входження цього числа із поточного масиву.
-// let arr = [4, 5, 2, 1, 6, 5, 3, 5, 2, 5]
-// let data = ... // 5
-// ...
-// console.log(arr) // [4, 2, 1, 6, 3, 2]
 
+function mostWanted(numbersArray) {
+  const newShortArr = [];
+  const counter = {};
+
+  //підрахунок кількості входжень кожного числа циклу
+  for (let number of numbersArray) {
+    if (counter[number] === undefined) {
+      counter[number] = 1;
+    } else {
+      counter[number]++;
+    }
+  }
+
+  let maxNumber;
+  let maxCounter = 0;
+
+  //пошук найбільшої кількості входжень
+  for (let number in counter) {
+    if (counter[number] > maxCounter) {
+      maxNumber = number;
+      maxCounter = counter[number];
+    }
+  }
+  newShortArr.push(maxNumber); // запис найчастішого числа у масив
+
+  // фільтрація вхідного масива на найчастіше число. Прийшлось перевести його у стрінг, по іншому не працювало 
+  let newFilteredArray = numbersArray.filter(
+    (number) => number.toString() !== maxNumber
+  );
+
+  console.log(newShortArr);
+  console.log(newFilteredArray);
+
+  return [newShortArr, newFilteredArray];
+}
+
+mostWanted([4, 5, 2, 1, 6, 5, 3, 5, 2, 5]);
 
 // Завдання 5
 let sideA = +prompt("Задано трикутник. Введіть довжину його 1-ї сторони:");
